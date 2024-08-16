@@ -1,4 +1,12 @@
 <h1>Drag and Drop Application</h1>
-<div class="box" cdkDrag>Drag Me</div>
+<div class="example-list m-2" cdkDropList cdkDropListOrientation="mixed" (cdkDropListDropped)="dropItems($event)">
+@for (item of items; track item){
+  <div class="example-box" cdkDrag>
+    Drag {{item}}
+  </div>
+
+}
+</div>
+
 
 <router-outlet />
