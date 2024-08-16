@@ -1,12 +1,55 @@
 <h1>Drag and Drop Application</h1>
-<div class="example-list m-2" cdkDropList cdkDropListOrientation="mixed" (cdkDropListDropped)="dropItems($event)">
-@for (item of items; track item){
-  <div class="example-box" cdkDrag>
-    Drag {{item}}
-  </div>
 
-}
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>List #1</h2>
+    <div class="example-list m-2"
+    cdkDropList
+    [cdkDropListData]="items"
+    cdkDropListOrientation="mixed"
+    (cdkDropListDropped)="dropItems($event)">
+    @for (item of items; track item){
+      <div class="example-box" cdkDrag>
+        Drag {{item}}
+      </div>
+    }
+  </div>
 </div>
+
+<div class="example-container">
+    <h2>List #2</h2>
+    <div class="example-list m-2"
+    cdkDropList
+    [cdkDropListData]="activeItems"
+    cdkDropListOrientation="mixed"
+    (cdkDropListDropped)="dropItems($event)">
+    @for (item of activeItems; track item){
+      <div class="example-box" cdkDrag>
+        Drag {{item}}
+      </div>
+    }
+  </div>
+</div>
+
+<div class="example-container">
+    <h2>List #3</h2>
+    <div class="example-list m-2"
+    cdkDropList
+    [cdkDropListData]="doneItems"
+    cdkDropListOrientation="mixed"
+    (cdkDropListDropped)="dropItems($event)">
+    @for (item of doneItems; track item){
+      <div class="example-box" cdkDrag>
+        Drag {{item}}
+      </div>
+    }
+  </div>
+</div>
+
+
+</div>
+
+
 
 
 <router-outlet />
