@@ -7,10 +7,14 @@
     cdkDropList
     [cdkDropListData]="items"
     cdkDropListOrientation="mixed"
-    (cdkDropListDropped)="dropItems($event)">
+    (cdkDropListDropped)="dropItems($event)"
+    (cdkDropListEntered)="entered($event)"
+    (cdkDropListExited)="exited($event)"
+    >
     @for (item of items; track item){
-      <div class="example-box" cdkDrag>
-        Drag {{item}}
+      <div class="example-box" cdkDrag [cdkDragData]="item">
+        Drag me {{item}}
+        <div *cdkDragPreview class="example-box">Your take "{{item}}"</div>
       </div>
     }
   </div>
@@ -22,9 +26,14 @@
     cdkDropList
     [cdkDropListData]="activeItems"
     cdkDropListOrientation="mixed"
-    (cdkDropListDropped)="dropItems($event)">
+    (cdkDropListDropped)="dropItems($event)"
+    (cdkDropListEntered)="entered($event)"
+    (cdkDropListExited)="exited($event)"
+    [cdkDropListEnterPredicate]="specialUseCase"
+    [cdkDropListConnectedTo]="activeItems"
+    >
     @for (item of activeItems; track item){
-      <div class="example-box" cdkDrag>
+      <div class="example-box" cdkDrag cdkDrag [cdkDragData]="item">
         Drag {{item}}
       </div>
     }
@@ -40,16 +49,13 @@
     (cdkDropListDropped)="dropItems($event)">
     @for (item of doneItems; track item){
       <div class="example-box" cdkDrag>
-        Drag {{item}}
+        {{item}}
       </div>
     }
   </div>
 </div>
 
-
 </div>
-
-
 
 
 <router-outlet />
